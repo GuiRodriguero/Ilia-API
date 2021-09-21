@@ -17,19 +17,32 @@
         					<input id="date" name="date" placeholder="DD/MM/YYY" type="text"/>
 						</div>
 							
-						<div class="form-group pl-3">
-							<label for="startHour">Start Hour</label>
-							<input id="startHour" name="startHour">
-							<label for="startMinute">Start Minute</label>
-							<input id="startMinute" name="startMinute">								
+						<div class="d-flex justify-content-start">							
+							<div class="form-group pl-3">
+								<label for="startHour">Start Hour</label>
+								<input type="range" class="form-range" min="0" max="23" step="1" id="startHour" name="startHour">
+								<label id="startHourLabel"></label>
+							</div>
+							<div class="pl-4">
+								<label for="startMinute">Start Minute</label>
+								<input type="range" class="form-range" min="0" max="59" step="1" id="startMinute" name="startMinute">
+								<label id="startMinuteLabel"></label>
+							</div>
 						</div>
-								
-						<div class="form-group pl-3">
-							<label for="endHour">End Hour</label>
-							<input id="endHour" name="endHour">
-							<label for="endMinute">End Minute</label>
-							<input id="endMinute" name="endMinute">
+						
+						<div class="d-flex justify-content-start">													
+							<div class="form-group pl-3">
+								<label for="endHour">End Hour</label>
+								<input type="range" class="form-range" min="0" max="23" step="1" id="endHour" name="endHour">
+								<label id="endHourLabel"></label>
+							</div>
+							<div class="pl-4">	
+								<label for="endMinute">End Minute</label>
+								<input type="range" class="form-range" min="0" max="59" step="1" id="endMinute" name="endMinute">
+								<label id="endMinuteLabel"></label>
+							</div>
 						</div>
+						
 						<button class="btn btn-success">Submit</button>	
 					</form>
 				</div>
@@ -55,6 +68,38 @@
 		        })
 		    })
 		    
+		    var slider = document.getElementById("startHour");
+			var output = document.getElementById("startHourLabel");
+			output.innerHTML = slider.value;
+			
+			slider.oninput = function() {
+			  output.innerHTML = this.value;
+			}
+
+		    var slider2 = document.getElementById("startMinute");
+			var output2 = document.getElementById("startMinuteLabel");
+			output2.innerHTML = slider.value;
+			
+			slider2.oninput = function() {
+			  output2.innerHTML = this.value;
+			}
+
+		    var slider3 = document.getElementById("endHour");
+			var output3 = document.getElementById("endHourLabel");
+			output3.innerHTML = slider.value;
+			
+			slider3.oninput = function() {
+			  output3.innerHTML = this.value;
+			}
+
+		    var slider4 = document.getElementById("endMinute");
+			var output4 = document.getElementById("endMinuteLabel");
+			output4.innerHTML = slider.value;
+			
+			slider4.oninput = function() {
+			  output4.innerHTML = this.value;
+			}
+
 		</script>
 	</body>
 </html>
