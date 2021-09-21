@@ -1,12 +1,60 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
-	<head>
+	<head th:replace="~{base :: head}">
 		<meta charset="UTF-8">
 		<title>Working Hour</title>
 	</head>
 
 	<body>
-		Oi oi
+		<div class="container">
+			<div th:replace="~{base :: titulo('Working Hour Input')}"></div>
+					
+				<div class="card mb-3 col-sm-12">
+					<form action="/working-hour" class="card-body" method="post">
+					
+						<div class="form-group col-sm-4">
+						    <label class="control-label" for="date">Date</label>
+        					<input id="date" name="date" placeholder="DD/MM/YYY" type="text"/>
+						</div>
+							
+						<div class="form-group pl-3">
+							<label for="startHour">Start Hour</label>
+							<input id="startHour" name="startHour">
+							<label for="startMinute">Start Minute</label>
+							<input id="startMinute" name="startMinute">								
+						</div>
+								
+						<div class="form-group pl-3">
+							<label for="endHour">End Hour</label>
+							<input id="endHour" name="endHour">
+							<label for="endMinute">End Minute</label>
+							<input id="endMinute" name="endMinute">
+						</div>
+						<button class="btn btn-success">Submit</button>	
+					</form>
+				</div>
+		</div>
+		
+		<!-- jQuery -->
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+		
+		<!-- Date Range Picker -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+		
+		<script type="text/javascript" src="dist/bootstrap-clockpicker.min.js"></script>
+		
+		<script>
+		    $(document).ready(function(){
+		        var date_input=$('input[name="date"]');
+		        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+		        date_input.datepicker({
+		            format: 'dd/mm/yyyy',
+		            container: container,
+		            todayHighlight: true,
+		            autoclose: true,
+		        })
+		    })
+		    
+		</script>
 	</body>
-
 </html>
