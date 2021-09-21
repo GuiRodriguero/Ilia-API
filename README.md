@@ -6,3 +6,4 @@ O que foi usado: <br>
 - Validation<br>
 - lombok<br>
 - Spring Boot Dev Tools<br>
+- Thymeleaf
