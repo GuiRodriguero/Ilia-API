@@ -13,20 +13,20 @@
 					<form action="/working-hour" class="card-body" method="post">
 					
 						<div class="form-group col-sm-4">
-						    <label class="control-label" for="date">Date</label>
-        					<input id="date" name="date" placeholder="DD/MM/YYY" type="text"/>
+						    <label class="control-label" for="dateRegister">Date</label>
+        					<input id="dateRegister" name="dateRegister" placeholder="DD/MM/YYY" type="text"/>
 						</div>
 							
 						<div class="d-flex justify-content-start">							
 							<div class="form-group pl-3">
 								<label for="startHour">Start Hour</label>
 								<input type="range" class="form-range" min="0" max="23" step="1" id="startHour" name="startHour">
-								<label id="startHourLabel"></label>
+								<label id="startHourLabel">0</label>
 							</div>
 							<div class="pl-4">
 								<label for="startMinute">Start Minute</label>
 								<input type="range" class="form-range" min="0" max="59" step="1" id="startMinute" name="startMinute">
-								<label id="startMinuteLabel"></label>
+								<label id="startMinuteLabel">0</label>
 							</div>
 						</div>
 						
@@ -34,12 +34,12 @@
 							<div class="form-group pl-3">
 								<label for="endHour">End Hour</label>
 								<input type="range" class="form-range" min="0" max="23" step="1" id="endHour" name="endHour">
-								<label id="endHourLabel"></label>
+								<label id="endHourLabel">0</label>
 							</div>
 							<div class="pl-4">	
 								<label for="endMinute">End Minute</label>
 								<input type="range" class="form-range" min="0" max="59" step="1" id="endMinute" name="endMinute">
-								<label id="endMinuteLabel"></label>
+								<label id="endMinuteLabel">0</label>
 							</div>
 						</div>
 						
@@ -58,7 +58,7 @@
 		
 		<script>
 		    $(document).ready(function(){
-		        var date_input=$('input[name="date"]');
+		        var date_input=$('input[name="dateRegister"]');
 		        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
 		        date_input.datepicker({
 		            format: 'dd/mm/yyyy',

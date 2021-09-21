@@ -30,11 +30,11 @@ public class WorkingHour {
 
 	@Min(value = 0)
 	@Max(value = 23)
-	private Integer starHour;
+	private Integer startHour;
 
 	@Min(value = 0)
 	@Max(value = 60)
-	private Integer starMinute;
+	private Integer startMinute;
 
 	@Min(value = 0)
 	@Max(value = 23)
