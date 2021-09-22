@@ -33,6 +33,7 @@ public class WorkingHourController {
 	@PostMapping
 	public String save(@Valid WorkingHour workingHour, BindingResult result) {
 		System.out.println(workingHour.getType());
+		System.out.println(workingHour.getDateRegister());
 		service.create(workingHour);
 		return "working-hour";
 	}

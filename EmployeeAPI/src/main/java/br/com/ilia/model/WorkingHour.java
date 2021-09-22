@@ -14,6 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -27,27 +28,33 @@ public class WorkingHour {
 	@Id @GeneratedValue(generator = "workHour", strategy = GenerationType.SEQUENCE)
 	private Long id;
 	
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@NotNull
 	private Calendar dateRegister;
 
 	@Enumerated(EnumType.STRING)
+	@NotNull
 	private WorkingHourType type;
 	
 	@Min(value = 0)
 	@Max(value = 23)
+	@NotNull
 	private Integer startHour;
 
 	@Min(value = 0)
 	@Max(value = 60)
+	@NotNull
 	private Integer startMinute;
 
 	@Min(value = 0)
 	@Max(value = 23)
+	@NotNull
 	private Integer endHour;
 
 	@Min(value = 0)
 	@Max(value = 60)
+	@NotNull
 	private Integer endMinute;
 
 }
