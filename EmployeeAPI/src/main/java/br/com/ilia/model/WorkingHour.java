@@ -1,7 +1,5 @@
 package br.com.ilia.model;
 
-import java.util.Calendar;
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -14,7 +12,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -29,10 +26,8 @@ public class WorkingHour {
 	@Id @GeneratedValue(generator = "workHour", strategy = GenerationType.SEQUENCE)
 	private Long id;
 	
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@NotNull
-	private Calendar dateRegister;
+	private String dateRegister;
 
 	@Enumerated(EnumType.STRING)
 	@NotNull

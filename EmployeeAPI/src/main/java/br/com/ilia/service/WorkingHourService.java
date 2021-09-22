@@ -1,5 +1,6 @@
 package br.com.ilia.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,8 @@ public class WorkingHourService {
 	WorkingHourRepository repository;
 	
 	public String create(WorkingHour workingHour) {
-		if(workingHour.getStartHour() <= workingHour.getEndHour()) {
-			if(workingHour.getStartMinute() < workingHour.getEndMinute()) {				
+		if(workingHour.getStartHour() <= workingHour.getEndHour()) {//Start Hour <= End Hour
+			if(workingHour.getStartMinute() < workingHour.getEndMinute()) {//Start Minute <= End Minute				
 				repository.save(workingHour);
 				return "Working Hour Added!";
 			}else {
@@ -37,5 +38,4 @@ public class WorkingHourService {
 		return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
 	}
 	
-
 }

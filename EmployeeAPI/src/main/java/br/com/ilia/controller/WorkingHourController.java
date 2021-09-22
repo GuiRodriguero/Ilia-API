@@ -33,7 +33,6 @@ public class WorkingHourController {
 			return "working-hour";
 		}
 		System.out.println(workingHour.getType());
-		System.out.println(workingHour.getDateRegister());
 		service.create(workingHour);
 		return "working-hour";
 	}
