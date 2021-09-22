@@ -1,5 +1,8 @@
 package br.com.ilia.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,28 +19,42 @@ public class WorkingHourService {
 	WorkingHourRepository repository;
 
 	public String create(WorkingHour workingHour) {
-		// Replacing / to - for API search
-		workingHour.setDateRegister(workingHour.getDateRegister().replaceAll("/", "-"));
-
-		// Get All Working Hours from the inserted day
-		List<WorkingHour> workingHours = repository.findByDateRegister(workingHour.getDateRegister());
 		
-		if(workingHours.size() <= 3) {
-			// Check if Star is Greater than End
-			if (workingHour.getStartHour() <= workingHour.getEndHour()) {// Start Hour <= End Hour
-				if (workingHour.getStartMinute() < workingHour.getEndMinute()) {// Start Minute <= End Minute
-					repository.save(workingHour);
-					return "Working Hour Added!";
+		//Parsing String to Calendar to check Day of The Week
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		try {
+			cal.setTime(sdf.parse(workingHour.getDateRegister()));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		//If not Sunday and Saturday
+		if(cal.get(Calendar.DAY_OF_WEEK) != 1 && cal.get(Calendar.DAY_OF_WEEK) != 7) {
+			// Replacing / to - for API search
+			workingHour.setDateRegister(workingHour.getDateRegister().replaceAll("/", "-"));
+
+			// Get All Working Hours from the inserted day
+			List<WorkingHour> workingHours = repository.findByDateRegister(workingHour.getDateRegister());
+			
+			if(workingHours.size() <= 3) {
+				// Check if Star is Greater than End
+				if (workingHour.getStartHour() <= workingHour.getEndHour()) {// Start Hour <= End Hour
+					if (workingHour.getStartMinute() < workingHour.getEndMinute()) {// Start Minute <= End Minute
+						repository.save(workingHour);
+						return "Working Hour Added!";
+					} else {
+						return "Start Hour/Minute > EndHour/Minute";
+					}
 				} else {
 					return "Start Hour/Minute > EndHour/Minute";
-				}
-			} else {
-				return "Start Hour/Minute > EndHour/Minute";
-			}			
+				}			
+			}else {
+				return "Working Hours limit for the day reached";
+			}
 		}else {
-			return "Working Hours limit for the day reached";
-		}
-		
+			return "Working Hours cannot be inserted in weekends";
+		}	
 	}
 
 	public List<WorkingHour> findAll() {
