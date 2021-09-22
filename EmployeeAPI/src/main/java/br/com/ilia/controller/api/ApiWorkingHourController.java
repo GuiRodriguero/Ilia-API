@@ -1,6 +1,5 @@
 package br.com.ilia.controller.api;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +25,18 @@ public class ApiWorkingHourController {
 		return service.findAll();
 	}
 	
-	@GetMapping("/{id}")
+	/*@GetMapping("/{id}")
 	public WorkingHour findById(@PathVariable("id") Long id) {
 		return service.findById(id);
-	}
+	}*/
 	
 	@PostMapping
 	public String create(@RequestBody WorkingHour workingHour) {
 		return service.create(workingHour);
 	}
 
+	@GetMapping("/{date}")
+	public List<WorkingHour> findbyDate(@PathVariable("date") String date) {
+		return service.findByDate(date);
+	}
 }

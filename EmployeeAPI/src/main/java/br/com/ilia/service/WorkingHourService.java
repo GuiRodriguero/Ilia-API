@@ -17,6 +17,9 @@ public class WorkingHourService {
 	WorkingHourRepository repository;
 	
 	public String create(WorkingHour workingHour) {
+		//Replacing / to - for API
+		workingHour.setDateRegister(workingHour.getDateRegister().replaceAll("/", "-"));
+		
 		if(workingHour.getStartHour() <= workingHour.getEndHour()) {//Start Hour <= End Hour
 			if(workingHour.getStartMinute() < workingHour.getEndMinute()) {//Start Minute <= End Minute				
 				repository.save(workingHour);
@@ -36,6 +39,10 @@ public class WorkingHourService {
 	
 	public WorkingHour findById(Long id) {
 		return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
+	}
+
+	public List<WorkingHour> findByDate(String date) {
+		return repository.findByDateRegister(date);
 	}
 	
 }
