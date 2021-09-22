@@ -29,10 +29,10 @@ public class WorkingHourController {
 	
 	@PostMapping
 	public String save(@Valid WorkingHour workingHour, BindingResult result) {
-		if(result.hasErrors()) {
-			return "working-hour";
+		if(result.hasErrors()) { //If has errors
+			return "working-hour"; //Return to the same page
 		}
-		System.out.println(workingHour.getType());
+
 		service.create(workingHour);
 		return "working-hour";
 	}

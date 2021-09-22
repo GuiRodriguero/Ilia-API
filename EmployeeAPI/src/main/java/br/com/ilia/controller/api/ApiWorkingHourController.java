@@ -25,11 +25,6 @@ public class ApiWorkingHourController {
 		return service.findAll();
 	}
 	
-	/*@GetMapping("/{id}")
-	public WorkingHour findById(@PathVariable("id") Long id) {
-		return service.findById(id);
-	}*/
-	
 	@PostMapping
 	public String create(@RequestBody WorkingHour workingHour) {
 		return service.create(workingHour);
