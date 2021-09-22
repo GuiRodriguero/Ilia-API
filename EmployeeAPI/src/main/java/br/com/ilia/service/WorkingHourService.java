@@ -37,6 +37,7 @@ public class WorkingHourService {
 			// Get All Working Hours from the inserted day
 			List<WorkingHour> workingHours = repository.findByDateRegister(workingHour.getDateRegister());
 			
+			//Working Hours cannot be greater than 4/day
 			if(workingHours.size() <= 3) {
 				// Check if Star is Greater than End
 				if (workingHour.getStartHour() <= workingHour.getEndHour()) {// Start Hour <= End Hour
