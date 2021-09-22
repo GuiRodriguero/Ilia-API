@@ -12,13 +12,17 @@ import org.springframework.validation.BindingResult;
 
 import br.com.ilia.model.WorkingHour;
 import br.com.ilia.repository.WorkingHourRepository;
+import br.com.ilia.service.WorkingHourService;
 
 @Controller
 @RequestMapping("/working-hour")
 public class WorkingHourController {
 
-	@Autowired
+	/*@Autowired
 	private WorkingHourRepository repository;
+	*/
+	@Autowired
+	private WorkingHourService service;
 	
 	@GetMapping
 	public ModelAndView index() {
@@ -28,13 +32,8 @@ public class WorkingHourController {
 	
 	@PostMapping
 	public String save(@Valid WorkingHour workingHour, BindingResult result) {
-		System.out.println(workingHour.getDateRegister());
-		System.out.println(workingHour.getStartHour());
-		System.out.println(workingHour.getStartMinute());
-		System.out.println(workingHour.getEndMinute());
-		System.out.println(workingHour.getEndHour());
-		
-		repository.save(workingHour);
+		System.out.println(workingHour.getType());
+		service.create(workingHour);
 		return "working-hour";
 	}
 }

@@ -1,8 +1,11 @@
 package br.com.ilia.model;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,8 +29,11 @@ public class WorkingHour {
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date dateRegister;
+	private Calendar dateRegister;
 
+	@Enumerated(EnumType.STRING)
+	private WorkingHourType type;
+	
 	@Min(value = 0)
 	@Max(value = 23)
 	private Integer startHour;
