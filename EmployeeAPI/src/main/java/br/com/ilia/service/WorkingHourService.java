@@ -15,9 +15,18 @@ public class WorkingHourService {
 	@Autowired
 	WorkingHourRepository repository;
 	
-	public WorkingHour create(WorkingHour workingHour) {
-
-		return repository.save(workingHour);
+	public String create(WorkingHour workingHour) {
+		if(workingHour.getStartHour() <= workingHour.getEndHour()) {
+			if(workingHour.getStartMinute() < workingHour.getEndMinute()) {				
+				repository.save(workingHour);
+				return "Working Hour Added!";
+			}else {
+				return "Error";
+			}
+		}else {
+			return "Error";
+		}
+		
 	}
 	
 	public List<WorkingHour> findAll(){

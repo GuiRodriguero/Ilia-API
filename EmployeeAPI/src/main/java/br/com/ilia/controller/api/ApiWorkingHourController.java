@@ -31,7 +31,7 @@ public class ApiWorkingHourController {
 	}
 	
 	@PostMapping
-	public WorkingHour create(@RequestBody WorkingHour workingHour) {
+	public String create(@RequestBody WorkingHour workingHour) {
 		return service.create(workingHour);
 	}
 
