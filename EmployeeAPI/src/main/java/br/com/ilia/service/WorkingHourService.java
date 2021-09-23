@@ -18,7 +18,7 @@ public class WorkingHourService {
 	@Autowired
 	WorkingHourRepository repository;
 
-	public String create(WorkingHour workingHour) {
+	public Boolean create(WorkingHour workingHour) {
 		
 		//Parsing String to Calendar to check Day of The Week
 		Calendar cal = Calendar.getInstance();
@@ -43,18 +43,18 @@ public class WorkingHourService {
 				if (workingHour.getStartHour() <= workingHour.getEndHour()) {// Start Hour <= End Hour
 					if (workingHour.getStartMinute() < workingHour.getEndMinute()) {// Start Minute <= End Minute
 						repository.save(workingHour);
-						return "Working Hour Added!";
+						return true;
 					} else {
-						return "Start Hour/Minute > EndHour/Minute";
+						return false;
 					}
 				} else {
-					return "Start Hour/Minute > EndHour/Minute";
+					return false;
 				}			
 			}else {
-				return "Working Hours limit for the day reached";
+				return false;
 			}
 		}else {
-			return "Working Hours cannot be inserted in weekends";
+			return false;
 		}	
 	}
 

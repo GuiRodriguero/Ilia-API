@@ -42,7 +42,10 @@ public class WorkingHourController {
 			return "working-hour"; //Return to the same page
 		}
 
-		service.create(workingHour);
-		return "redirect:working-hour/form";
+		if(service.create(workingHour)) {
+			return "redirect:working-hour/form";			
+		}else {
+			return "redirect:working-hour";//redirect - Prevent that fields are filled
+		}
 	}
 }
