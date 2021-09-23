@@ -10,17 +10,17 @@
 			<div th:replace="~{base :: titulo('Working Hour Input')}"></div>
 					
 				<div class="card mb-3 col-sm-12">
-					<form action="/working-hour" class="card-body" method="post">
+					<form action="/working-hour" class="card-body" method="post" th:object="${workingHour}">
 												
 						<div class="d-flex justify-content-start">							
 							<div class="form-group pl-3">
 								<label for="startHour">Start Hour</label>
-								<input type="range" class="form-range" min="0" max="23" step="1" id="startHour" name="startHour">
+								<input type="range" class="form-range" min="0" max="23" step="1" id="startHour" name="startHour" th:field="*{startHour}">
 								<label id="startHourLabel">0</label>
 							</div>
 							<div class="pl-4">
 								<label for="startMinute">Start Minute</label>
-								<input type="range" class="form-range" min="0" max="59" step="1" id="startMinute" name="startMinute">
+								<input type="range" class="form-range" min="0" max="59" step="1" id="startMinute" name="startMinute" th:field="*{startMinute}">
 								<label id="startMinuteLabel">0</label>
 							</div>
 						</div>
@@ -28,26 +28,27 @@
 						<div class="d-flex justify-content-start">													
 							<div class="form-group pl-3">
 								<label for="endHour">End Hour</label>
-								<input type="range" class="form-range" min="0" max="23" step="1" id="endHour" name="endHour">
+								<input type="range" class="form-range" min="0" max="23" step="1" id="endHour" name="endHour" th:field="*{endHour}">
 								<label id="endHourLabel">0</label>
 							</div>
 							<div class="pl-4">	
 								<label for="endMinute">End Minute</label>
-								<input type="range" class="form-range" min="0" max="59" step="1" id="endMinute" name="endMinute">
+								<input type="range" class="form-range" min="0" max="59" step="1" id="endMinute" name="endMinute" th:field="*{endMinute}">
 								<label id="endMinuteLabel">0</label>
 							</div>
 						</div>
 						
-						<div class="form-group col-sm-4">
+						<div class="form-group col-sm-6">
 							<label class="control-label" for="dateRegister">Date</label>
-	        				<input id="dateRegister" name="dateRegister" placeholder="DD/MM/YYY" type="text"/>
+	        				<input id="dateRegister" name="dateRegister" placeholder="DD/MM/YYYY" type="text" th:field="*{dateRegister}"/>
+	        				<span th:errors="*{dateRegister}"></span>
 						</div>
 	
 						<div class="form-group pl-3">
 							<label class="control-label" for="type">Type</label>
 							<select class="form-group" aria-label="Default select example" name="type" id="type">
 								<option th:each="workType : ${T(br.com.ilia.model.WorkingHourType).values()}" th:value="${workType}"
-								 th:text="${workType}"></option>
+								 th:text="${workType}" th:field="*{type}"></option>
 							</select>
 						</div>
 						

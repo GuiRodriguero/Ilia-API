@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+	<head th:replace="~{base :: head}">
+		<meta charset="UTF-8">
+		<title>Working Hour</title>
+	</head>
+
+	<body>
+		<h2 class="text-center">Registered Working Hours</h2>
+		<div><a class="button pl-3" href="/working-hour">Return</a></div>
+		<div class="card" th:each="workingHour : ${workingHours}" >
+			<div class="card-body">
+				<div class="card-title alert-dark" th:text="${workingHour.dateRegister}"></div>
+				<div> <label>Start Hour: </label><span class="card-text" th:text="${workingHour.startHour}"></span> 	</div>
+				<div> <label>Start Minute: </label><span class="card-text" th:text="${workingHour.startMinute}"></span> </div>
+				<div> <label>End Hour: </label><span class="card-text" th:text="${workingHour.endHour}"></span> 		</div>
+				<div> <label>End Minute: </label><span class="card-text" th:text="${workingHour.endMinute}"></span> 	</div>
+				<div> <label>Working Hour Type: </label><span class="card-text" th:text="${workingHour.type}"></span> 	</div>					
+			</div>
+		</div>		
+	</body>
+</html>
